@@ -6,7 +6,7 @@
 
 ```
 docker run -d \
-  -p 8000:80 -p 0443:443 \
+  -p 80:80 -p 443:443 \
   -v ./usr:/var/www/default/usr \
   rehiy/typecho
 ```
