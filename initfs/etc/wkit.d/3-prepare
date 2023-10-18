@@ -1,0 +1,6 @@
+#!/bin/sh -ex
+#
+
+if [ ! -d /var/www/default/usr/themes/default ]; then
+    cp -a /var/www/prepare/* /var/www/default/usr/
+fi
