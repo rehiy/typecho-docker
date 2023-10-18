@@ -10,3 +10,5 @@ docker run -d \
   -v ./usr:/var/www/default/usr \
   rehiy/typecho
 ```
+
+部署完成后，请访问 `http://your-server:8000` 完成数据库设置。系统将自动备份 `config.inc.php` 为 `usr/config.php`，以便下次启动时自动恢复配置。
