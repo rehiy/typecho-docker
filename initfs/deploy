@@ -4,12 +4,13 @@
 cd /tmp
 
 cp -a etc/* /etc/
+chmod a+x /etc/wkit.d/*
+
+rm -rf /var/www/default
 
 wget -O- https://ghproxy.com/https://github.com/typecho/typecho/archive/refs/heads/master.tar.gz | tar xzf -
-rm -rf /var/www/default && mv typecho-master /var/www/default
-
-rm -rf /var/www/default/.g* rm -rf /var/www/default/.p*
-rm -rf /var/www/default/*.md
+mv typecho-master /var/www/default && mv /var/www/default/usr /var/www/prepare
+rm -rf /var/www/default/.g* rm -rf /var/www/default/.p* /var/www/default/*.md
 
 sed -i "s/config.inc.php/usr\/config.php/g" /var/www/default/index.php
 sed -i "s/config.inc.php/usr\/config.php/g" /var/www/default/install.php

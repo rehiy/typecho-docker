@@ -1,5 +1,10 @@
-#!/bin/sh -ex
+#!/bin/sh
 #
+
+
+if [ ! -d /var/www/default/usr/ ]; then
+    mkdir -p /var/www/default/usr
+fi
 
 if [ ! -d /var/www/default/usr/themes/default ]; then
     cp -a /var/www/prepare/* /var/www/default/usr/
