@@ -4,19 +4,21 @@
 
 ## 快速部署
 
-部署完成后，请访问 `http://your-server:8000` 完成数据库设置。系统将自动备份 `config.inc.php` 为 `usr/config.php`，以便下次启动时自动恢复配置。
-如需设置时区可以添加参数 `-e TZ=Asia/Shanghai`。
+部署完成后，请访问 `http://your-server:8000` 完成数据库设置。
+
+- 如需设置时区可以添加参数 `-e TZ=Asia/Shanghai`
+- 系统将自动备份 `config.inc.php` 为 `usr/config.php`，重建时自动恢复
 
 ```shell
 docker run -d \
   -p 8000:80 -p 8443:443 \
-  -v ./usr:/var/www/default/usr \
+  -v /srv/myblog:/var/www/default/usr \
   rehiy/typecho
 ```
 
 ## K8s 快速部署
 
-将下面的配置导入k8s集群即可完成部署，然后访问 `http://blog.example.com` 完成数据库设置
+将下面的配置导入k8s集群即可完成部署，然后访问 `http://blog.example.com` 完成数据库设置。
 
 - 请注意修改存储路径 `/srv/myblog` 和**博客域名**
 - 如果没有配置证书，请删除 `websecure` 和 `tls` 配置
