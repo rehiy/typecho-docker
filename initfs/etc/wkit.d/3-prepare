@@ -1,11 +1,15 @@
 #!/bin/sh
 #
 
-
 if [ ! -d /var/www/default/usr/ ]; then
     mkdir -p /var/www/default/usr
 fi
 
 if [ ! -d /var/www/default/usr/themes/default ]; then
     cp -a /var/www/prepare/* /var/www/default/usr/
+fi
+
+if [ -f /var/www/default/usr/config.php ]; then
+    cp -a /var/www/default/usr/config.php /var/www/default/config.inc.php
+    rm -f /var/www/default/install.php
 fi
