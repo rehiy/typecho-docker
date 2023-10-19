@@ -1,13 +1,16 @@
 # Docker Image for Typecho
 
-基于 [`rehiy/webox:nginx-php8`](https://github.com/rehiy/webox-docker) 构建，支持 x86_64 和 arm64 构架；每周日拉取 [Typecho](https://github.com/typecho/typecho) 主分支代码更新镜像。
+基于 [`rehiy/webox:nginx-php8`](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.2) 构建，支持 x86_64 和 arm64 构架；每周日拉取 [Typecho](https://github.com/typecho/typecho) 主分支代码更新镜像。
+
+- 初始化后将自动备份 `config.inc.php` 为 `usr/config.php`
+- 时区默认使用**UTC**，更改时区可添加环境变量 `TZ=Asia/Shanghai`
+- 其他配置可参考 [rehiy/nginx-php8.2](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.2) 文档，可实现自定义SSL配置、执行自定义脚本等
 
 ## 快速部署
 
-部署完成后，请访问 `http://your-server:8000` 完成数据库设置。
+执行下面的脚本完成部署，然后访问 `http://your-server:8000` 设置数据库和管理员账号。
 
-- 如需设置时区可以添加参数 `-e TZ=Asia/Shanghai`
-- 系统将自动备份 `config.inc.php` 为 `usr/config.php`，重建时自动恢复
+- 请注意修改存储路径 `/srv/myblog` 和**端口号**
 
 ```shell
 docker run -d \
@@ -18,11 +21,11 @@ docker run -d \
 
 ## K8s 快速部署
 
-将下面的配置导入k8s集群即可完成部署，然后访问 `http://blog.example.com` 完成数据库设置。
+将下面的配置导入k8s集群即可完成部署，然后访问 `http://blog.example.com` 设置数据库和管理员账号。
 
 - 请注意修改存储路径 `/srv/myblog` 和**博客域名**
 - 如果没有配置证书，请删除 `websecure` 和 `tls` 配置
-- 如果你没有使用 `traefik.ingress` 请修改为对应的 `Ingress`配置
+- 如果没有使用 `traefik.ingress` 请修改为对应的 `Ingress`配置
 
 ```yaml
 kind: Deployment
