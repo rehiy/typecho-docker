@@ -12,7 +12,7 @@
 ```shell
 docker run -d \
   -p 8000:80 -p 8443:443 \
-  -v /srv/myblog:/var/www/default/usr \
+  -v /srv/myblog/usr:/var/www/default/usr \
   rehiy/typecho
 ```
 
@@ -22,7 +22,7 @@ docker run -d \
 
 - 请注意修改存储路径 `/srv/myblog` 和**博客域名**
 - 如果没有配置证书，请删除 `websecure` 和 `tls` 配置
-- 如果你没有使用 `traefik.ingress` 请修改对应的 `Ingress`配置
+- 如果你没有使用 `traefik.ingress` 请修改为对应的 `Ingress`配置
 
 ```yaml
 kind: Deployment
@@ -48,7 +48,7 @@ spec:
             - containerPort: 443
           volumeMounts:
             - name: *name
-              subPath: data
+              subPath: usr
               mountPath: /var/www/default/usr
       volumes:
         - name: *name
