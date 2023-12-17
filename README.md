@@ -6,7 +6,7 @@
 - 时区默认使用**UTC**，更改时区可添加环境变量 `TZ=Asia/Shanghai`
 - 其他配置可参考 [rehiy/nginx-php8.2](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.2) 文档，可实现自定义SSL配置、执行自定义脚本等
 
-## 快速部署
+## Docker 快速部署
 
 执行下面的脚本完成部署，然后访问 `http://your-server:8000` 设置数据库和管理员账号。
 
