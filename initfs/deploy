@@ -9,7 +9,7 @@ chmod a+x /etc/wkit.d/*
 rm -rf /var/www/default
 
 # install and clean the typecho
-wget -O- https://ghproxy.com/https://github.com/typecho/typecho/archive/refs/heads/master.tar.gz | tar xzf -
+wget -O- https://github.com/typecho/typecho/archive/refs/heads/master.tar.gz | tar xzf -
 mv typecho-master /var/www/default && mv /var/www/default/usr /var/www/prepare
 rm -rf /var/www/default/.g* /var/www/default/.p* /var/www/default/*.md
 
