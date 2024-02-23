@@ -1,6 +1,6 @@
 FROM rehiy/webox:nginx-php8.2
 
-LABEL version="1.2.1" \
+LABEL version="1.3.0" \
       maintainer="wang@rehiy.com"
 
 ADD initfs /tmp
