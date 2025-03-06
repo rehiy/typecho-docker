@@ -1,4 +1,4 @@
-FROM rehiy/webox:nginx-php8.2
+FROM rehiy/webox:nginx-php8.3
 
 LABEL version="1.3.0" \
       maintainer="wang@rehiy.com"
