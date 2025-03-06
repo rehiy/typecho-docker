@@ -1,10 +1,10 @@
 # Docker Image for Typecho
 
-基于 [`rehiy/webox:nginx-php8`](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.2) 构建，支持 x86_64 和 arm64 构架；每周日拉取 [Typecho](https://github.com/typecho/typecho) 主分支代码更新镜像。
+基于 [`rehiy/webox:nginx-php8`](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.3) 构建，支持 x86_64 和 arm64 构架；每周日拉取 [Typecho](https://github.com/typecho/typecho) 主分支代码更新镜像。
 
 - 初始化后将自动备份 `config.inc.php` 为 `usr/config.php`
 - 时区默认使用**UTC**，更改时区可添加环境变量 `TZ=Asia/Shanghai`
-- 其他配置可参考 [rehiy/nginx-php8.2](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.2) 文档，可实现自定义SSL配置、执行自定义脚本等
+- 其他配置可参考 [rehiy/nginx-php8](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.3) 文档，可实现自定义SSL配置、执行自定义脚本等
 
 ## Docker 快速部署
 
@@ -15,7 +15,7 @@
 ```shell
 docker run -d \
   -p 8000:80 -p 8443:443 \
-  -v /srv/myblog/usr:/var/www/default/usr \
+  -v /srv/myblog:/var/www/default/usr \
   rehiy/typecho
 ```
 
