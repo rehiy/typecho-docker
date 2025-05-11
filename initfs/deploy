@@ -31,8 +31,8 @@ mv typecho-theme-waxyz-master /var/www/default/usr/themes/waxyz
 
 # change config.inc.php to usr/home/config.php
 mkdir -p /var/www/default/usr/home
-ls -sf ./home/backups /var/www/default/usr/backups
-ls -sf ./home/uploads /var/www/default/usr/uploads
+ln -sf ./home/backups /var/www/default/usr/backups
+ln -sf ./home/uploads /var/www/default/usr/uploads
 ln -sf ./usr/home/config.php /var/www/default/config.inc.php
 sed -i "s#config.inc.php#usr/home/config.php#" /var/www/default/install.php
 sed -i "s#dirname(__FILE__)#'/var/www/default'#g" /var/www/default/install.php
