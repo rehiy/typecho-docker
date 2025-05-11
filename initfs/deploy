@@ -10,10 +10,28 @@ rm -rf /var/www/default
 
 # install and clean the typecho
 wget -O- https://github.com/typecho/typecho/archive/refs/heads/master.tar.gz | tar xzf -
-mv typecho-master /var/www/default && mv /var/www/default/usr /var/www/prepare
-rm -rf /var/www/default/.g* /var/www/default/.p* /var/www/default/*.md
+rm -rf typecho-master/.* typecho-master/*.md typecho-master/tools
+mv typecho-master /var/www/default
 
-# auto save config.inc.php to usr/config.php
-sed -i 's#return $code#file_put_contents(__TYPECHO_ROOT_DIR__ . "/usr/config.php", $code);\nreturn $code#' /var/www/default/install.php
+# install typecho-plugin-md
+wget -O- https://github.com/rehiy/typecho-plugin-md/archive/refs/heads/master.tar.gz | tar xzf -
+mv typecho-plugin-md-master /var/www/default/usr/plugins/Markdown
+
+# install typecho-plugin-prism
+wget -O- https://github.com/rehiy/typecho-plugin-prism/archive/refs/heads/master.tar.gz | tar xzf -
+mv typecho-plugin-prism-master /var/www/default/usr/plugins/Prismjs
+
+# install typecho-plugin-sitemap
+wget -O- https://github.com/rehiy/typecho-plugin-sitemap/archive/refs/heads/master.tar.gz | tar xzf -
+mv typecho-plugin-sitemap-master /var/www/default/usr/plugins/Sitemap
+
+# install typecho-theme-waxyz
+wget -O- https://github.com/rehiy/typecho-theme-waxyz/archive/refs/heads/master.tar.gz | tar xzf -
+mv typecho-theme-waxyz-master /var/www/default/usr/themes/waxyz
+
+# change config.inc.php to usr/misc/config.php
+mkdir -p /var/www/default/usr/misc
+sed -i 's#config.inc.php#usr/misc/config.php#' /var/www/default/index.php
+sed -i 's#config.inc.php#usr/misc/config.php#' /var/www/default/install.php
 
 rm -rf /tmp/*

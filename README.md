@@ -15,7 +15,9 @@
 ```shell
 docker run -d \
   -p 8000:80 -p 8443:443 \
-  -v /srv/myblog:/var/www/default/usr \
+  -v /srv/myblog/backups:/var/www/default/usr/backups \
+  -v /srv/myblog/uploads:/var/www/default/usr/uploads \
+  -v /srv/myblog/misc:/var/www/default/usr/misc \
   rehiy/typecho
 ```
 
@@ -51,8 +53,14 @@ spec:
             - containerPort: 443
           volumeMounts:
             - name: *name
-              subPath: usr
-              mountPath: /var/www/default/usr
+              subPath: backups
+              mountPath: /var/www/default/usr/backups
+            - name: *name
+              subPath: uploads
+              mountPath: /var/www/default/usr/uploads
+            - name: *name
+              subPath: misc
+              mountPath: /var/www/default/usr/misc
       volumes:
         - name: *name
           hostPath:
