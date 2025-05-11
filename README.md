@@ -2,11 +2,19 @@
 
 基于 [`rehiy/webox:nginx-php8`](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.3) 构建，支持 x86_64 和 arm64 构架；每周日拉取 [Typecho](https://github.com/typecho/typecho) 主分支代码更新镜像。
 
-- 为方便持久化，已修改配置文件 `config.inc.php` 为 `usr/misc/config.php`
+- 为方便持久化，已修改配置文件 `config.inc.php` 为 `usr/home/config.php`
 - 时区默认使用**UTC**，如需更改时区，可在容器配置中添加环境变量 `TZ=Asia/Shanghai`
 - 其他配置可参考 [rehiy/nginx-php8](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.3) 文档，可实现自定义SSL配置、执行自定义脚本等个性化能力
 
-## Docker 快速部署
+## 预安装模块
+
+- Typecho：<https://github.com/typecho/typecho>
+- Typecho-plugin-md：<https://github.com/rehiy/typecho-plugin-md>
+- Typecho-plugin-prism：<https://github.com/rehiy/typecho-plugin-prism>
+- Typecho-plugin-sitemap：<https://github.com/rehiy/typecho-plugin-sitemap>
+- Typecho-theme-waxyz：<https://github.com/rehiy/typecho-theme-waxyz>
+
+## 使用 Docker 部署
 
 执行下面的脚本完成部署，然后访问 `http://your-server:8000` 设置数据库和管理员账号。
 
@@ -15,13 +23,11 @@
 ```shell
 docker run -d \
   -p 8000:80 -p 8443:443 \
-  -v /srv/myblog/backups:/var/www/default/usr/backups \
-  -v /srv/myblog/uploads:/var/www/default/usr/uploads \
-  -v /srv/myblog/misc:/var/www/default/usr/misc \
+  -v /srv/myblog/home:/var/www/default/usr/home \
   rehiy/typecho
 ```
 
-## K8s 快速部署
+## 使用 K8s/K3s 部署
 
 将下面的配置导入k8s集群即可完成部署，然后访问 `http://blog.example.com` 设置数据库和管理员账号。
 
@@ -53,14 +59,8 @@ spec:
             - containerPort: 443
           volumeMounts:
             - name: *name
-              subPath: backups
-              mountPath: /var/www/default/usr/backups
-            - name: *name
-              subPath: uploads
-              mountPath: /var/www/default/usr/uploads
-            - name: *name
-              subPath: misc
-              mountPath: /var/www/default/usr/misc
+              subPath: home
+              mountPath: /var/www/default/usr/home
       volumes:
         - name: *name
           hostPath:

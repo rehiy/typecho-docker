@@ -29,10 +29,12 @@ mv typecho-plugin-sitemap-master /var/www/default/usr/plugins/Sitemap
 wget -O- https://github.com/rehiy/typecho-theme-waxyz/archive/refs/heads/master.tar.gz | tar xzf -
 mv typecho-theme-waxyz-master /var/www/default/usr/themes/waxyz
 
-# change config.inc.php to usr/misc/config.php
-mkdir -p /var/www/default/usr/misc
-ln -sf ./usr/misc/config.php /var/www/default/config.inc.php
-sed -i "s#config.inc.php#usr/misc/config.php#" /var/www/default/install.php
+# change config.inc.php to usr/home/config.php
+mkdir -p /var/www/default/usr/home
+ls -sf ./home/backups /var/www/default/usr/backups
+ls -sf ./home/uploads /var/www/default/usr/uploads
+ln -sf ./usr/home/config.php /var/www/default/config.inc.php
+sed -i "s#config.inc.php#usr/home/config.php#" /var/www/default/install.php
 sed -i "s#dirname(__FILE__)#'/var/www/default'#g" /var/www/default/install.php
 
 rm -rf /tmp/*
