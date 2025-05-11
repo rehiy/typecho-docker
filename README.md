@@ -2,9 +2,9 @@
 
 基于 [`rehiy/webox:nginx-php8`](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.3) 构建，支持 x86_64 和 arm64 构架；每周日拉取 [Typecho](https://github.com/typecho/typecho) 主分支代码更新镜像。
 
-- 初始化后将自动备份 `config.inc.php` 为 `usr/config.php`
-- 时区默认使用**UTC**，更改时区可添加环境变量 `TZ=Asia/Shanghai`
-- 其他配置可参考 [rehiy/nginx-php8](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.3) 文档，可实现自定义SSL配置、执行自定义脚本等
+- 为方便持久化，已修改配置文件 `config.inc.php` 为 `usr/misc/config.php`
+- 时区默认使用**UTC**，如需更改时区，可在容器配置中添加环境变量 `TZ=Asia/Shanghai`
+- 其他配置可参考 [rehiy/nginx-php8](https://github.com/rehiy/webox-docker/tree/master/nginx-php8.3) 文档，可实现自定义SSL配置、执行自定义脚本等个性化能力
 
 ## Docker 快速部署
 
