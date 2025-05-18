@@ -22,7 +22,8 @@
 
 ```shell
 docker run -d \
-  -p 8000:80 -p 8443:443 \
+  -p 80:80 -p 443:443 \
+  -e TZ=Asia/Shanghai \
   -v /srv/myblog/home:/var/www/default/usr/home \
   rehiy/typecho
 ```
